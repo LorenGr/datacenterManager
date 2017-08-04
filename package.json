@@ -1,0 +1,57 @@
+{
+  "name": "datacenterManager",
+  "version": "1.0.0",
+  "description": "Coding Challenge",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^6.4.0",
+    "babel-plugin-transform-class-properties": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.22.0",
+    "babel-register": "^6.24.1",
+    "babel-runtime": "^6.23.0",
+    "clean-webpack-plugin": "^0.1.15",
+    "enzyme": "^2.9.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "ignore-styles": "^5.0.1",
+    "jest": "^20.0.4",
+    "lodash-webpack-plugin": "^0.11.2",
+    "mocha": "^3.4.2",
+    "react-addons-test-utils": "^15.6.0",
+    "react-hot-loader": "3.0.0-beta.6",
+    "react-test-renderer": "^15.6.1",
+    "sinon": "^2.3.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-3"
+    ]
+  },
+  "scripts": {
+    "test": "nyc mocha  --require debug-fd-deprecated --compilers js:babel-register --recursive --require babel-polyfill --require ignore-styles",
+    "start": "NODE_ENV=production npm run webpack && node index.js",
+    "start-dev": "node index.js",
+    "webpack-server": "webpack-dev-server --historyApiFallback --inline --hot --host localhost --port 3000",
+    "webpack": "webpack --colors --progress --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LorenGr/datacenterManager.git"
+  },
+  "author": "Loren Grixti",
+  "homepage": "https://github.com/LorenGr/datacenterManager#readme"
+}
