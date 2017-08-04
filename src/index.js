@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 //Redux
@@ -6,17 +7,15 @@ import {Provider} from 'react-redux';
 import {reducers} from './reducers/index';
 
 //App Components
-import Datacenter from './components/datacenter';
+import DataCenter from './components/datacenter';
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(
-    applyMiddleware(routerMiddleware(browserHistory))
-));
+const store = createStore(reducers);
 
 ReactDOM.render(
     <Provider store={store}>
-        <Datacenter/>
+        <DataCenter/>
     </Provider>,
     document.getElementById('datacenter_container')
 );
