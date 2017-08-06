@@ -10,24 +10,22 @@ const applications = [
 ];
 
 export class AppInstCreator extends React.Component {
-    createAppInstance(appid) {
+    createAppInstance(app) {
         this.props.dispatch({
-            type: 'ADD_APP_INST',
-            id: appid
+            type: 'ADD_APP_INST', app
         })
     }
 
-    destroyAppInstance(appid) {
+    destroyAppInstance(app) {
         this.props.dispatch({
-            type: 'DESTROY_APP_INST',
-            id: appid
+            type: 'DESTROY_APP_INST', app
         })
     }
 
     constructor(props) {
         super(props);
-        this.createApplicationInstance = this.createAppInstance.bind(this);
-        this.destroyApplicationInstance = this.destroyAppInstance.bind(this);
+        this.createAppInstance = this.createAppInstance.bind(this);
+        this.destroyAppInstance = this.destroyAppInstance.bind(this);
     }
 
 
@@ -39,8 +37,14 @@ export class AppInstCreator extends React.Component {
                         <li key={app.id}>
                             {app.label}
                             <div>
-                                <button onClick={this.createApplicationInstance(app.id)}>+</button>
-                                <button onClick={this.destroyApplicationInstance(app.id)}>-</button>
+                                <button onClick={() => {
+                                    this.createAppInstance(app)
+                                }}>+
+                                </button>
+                                <button onClick={() => {
+                                    this.destroyAppInstance(app)
+                                }}>-
+                                </button>
                             </div>
                         </li>
                     )

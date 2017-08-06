@@ -20,6 +20,6 @@ const DataCenter = () => (
             <ServerCanvas/>
         </section>
     </div>
-)
+);
 
 export default DataCenter;

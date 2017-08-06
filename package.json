@@ -4,6 +4,7 @@
   "description": "Coding Challenge",
   "main": "index.js",
   "dependencies": {
+    "lodash.sortby": "^4.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",

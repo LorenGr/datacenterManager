@@ -18,7 +18,8 @@ export class ServerCanvas extends React.Component {
     render() {
         return (
             <div>
-                {this.props.servers.map(server => {
+                {Object.keys(this.props.servers).map(key => {
+                    let server = this.props.servers[key];
                     return (<ServerContainer key={server.id} server={server}/> )
                 })}
             </div>

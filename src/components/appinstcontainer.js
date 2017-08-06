@@ -5,15 +5,12 @@ export class AppInstContainer extends React.Component {
 
     constructor(props) {
         super(props);
-
     }
 
     render() {
         return (
-            <div>
-               APP
-            </div>
-        )
+            <span> {this.props.app.application.label} </span>
+        );
     }
 }
 
