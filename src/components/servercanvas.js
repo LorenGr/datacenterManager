@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+//Application Components
+import ServerContainer from './servercontainer';
+
 export class ServerCanvas extends React.Component {
 
     constructor(props) {
@@ -16,12 +19,12 @@ export class ServerCanvas extends React.Component {
         return (
             <div>
                 {this.props.servers.map(server => {
-                    return (<div key={server.id}> server </div>)
+                    return (<ServerContainer key={server.id} server={server}/> )
                 })}
             </div>
         );
     }
-};
+}
 
 
 function mapStateToProps(state) {

@@ -20,8 +20,8 @@ export class ServerCreator extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.addServer}>+</button>
-                <button onClick={this.destroyServer}>-</button>
+                <button onClick={this.addServer}>Create Server +</button>
+                <button onClick={this.destroyServer}>Destroy Server -</button>
             </div>
         )
     }
