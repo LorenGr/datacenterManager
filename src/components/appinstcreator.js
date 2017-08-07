@@ -53,7 +53,14 @@ const styles = {
     creatorButton: {
         border: 'none',
         color: 'white'
+    },
+    amount : {
+        color : 'darkgrey',
+        fontSize : 12,
+        marginLeft:7,
+        fontWeight:'bold'
     }
+
 };
 
 export class AppInstCreator extends React.Component {
@@ -80,12 +87,15 @@ export class AppInstCreator extends React.Component {
         return (
             <ul className={classes.ul}>
                 {applications.map(app => {
+                    let appInstancesAmount = this.props.apps[app.id] && this.props.apps[app.id].length;
                     return (
-                        <li style={
-                            {borderLeftColor: app.color}
-                        }
+                        <li style={{borderLeftColor: app.color}}
                             className={classes.li} key={app.id}>
                             {app.label}
+                            {appInstancesAmount > 0 ?
+                                (<span className={classes.amount}>
+                                    ({appInstancesAmount})
+                                </span>) : <span/>}
                             <div className={classes.buttonsContainer}>
 
                                 <button className={classes.button} onClick={() => {
@@ -108,6 +118,12 @@ export class AppInstCreator extends React.Component {
     }
 };
 
-export default connect()(
+function mapStateToProps(state) {
+    return {
+        apps: state.datacenter.apps
+    }
+}
+
+export default connect(mapStateToProps)(
     injectSheet(styles)(AppInstCreator)
 );
