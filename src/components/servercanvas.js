@@ -6,9 +6,9 @@ import injectSheet from 'react-jss'
 import ServerContainer from './servercontainer';
 
 const styles = {
-  canvas : {
-      backgroundColor : 'black'
-  }
+    canvas: {
+        backgroundColor: 'black'
+    }
 };
 
 export class ServerCanvas extends React.Component {
