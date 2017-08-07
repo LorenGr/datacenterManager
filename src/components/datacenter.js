@@ -8,8 +8,6 @@ import AppInstCreator from './appinstcreator';
 
 const styles = {
     container: {
-        display: 'flex',
-        backgroundColor: 'black',
         margin: 0,
         fontFamily: 'Open Sans',
         color: 'white'
@@ -18,11 +16,13 @@ const styles = {
         color: 'white',
         width: 200,
         marginLeft: 40,
-        backgroundColor: 'dimgrey'
+        backgroundColor: 'dimgrey',
+        position : 'fixed',
+        top : 0,
+        height: '100%'
     },
     section: {
-        flex: 1,
-        marginLeft: 40
+        marginLeft: 278
     }
 };
 

@@ -39,10 +39,17 @@ export default function datacenter(state = {
             delete new_state.servers[sorted_servers[0].id];
             if (purgedAppInstances.length) {
                 purgedAppInstances.forEach(instance => {
-                        findIndexAndRemove(
-                            new_state.apps[instance.application.id],
-                            (appInstance) => appInstance.id === instance.id
-                        );
+                        let nextServer = getNextAvailableServer();
+
+                        if (nextServer) {
+                            new_state.servers[nextServer].apps.push(instance);
+
+                        } else {
+                            findIndexAndRemove(
+                                new_state.apps[instance.application.id],
+                                (appInstance) => appInstance.id === instance.id
+                            );
+                        }
                     }
                 );
             }
