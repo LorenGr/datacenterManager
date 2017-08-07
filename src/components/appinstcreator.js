@@ -7,7 +7,7 @@ const applications = [
     {id: 1, label: "Rails", short: "Rl", color: 'orange'},
     {id: 2, label: "Chronos", short: "Ch", color: 'red'},
     {id: 3, label: "Storm", short: "St", color: 'blue'},
-    {id: 4, label: "Spark", short: "Sp", color: 'yellow'},
+    {id: 4, label: "Spark", short: "Sp", color: 'green'},
 ];
 
 const styles = {
