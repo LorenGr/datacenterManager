@@ -13,7 +13,11 @@ const styles = {
         cursor: 'pointer',
         borderRadius: 20,
         marginRight: 7,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        '&:hover': {
+            border: '2px solid white',
+            color: 'white'
+        }
     },
     buttonLabel: {
         marginTop: 20,
@@ -26,7 +30,7 @@ const styles = {
     },
 
     container: {
-        marginTop: 15,
+        marginTop: 40,
         marginBottom: 20,
         textAlign: 'center',
         height: 70

@@ -14,14 +14,14 @@ const styles = {
     ul: {
         margin: 0,
         padding: 0,
-        marginBottom:50
+        marginBottom: 50
     },
     li: {
         listStyle: 'none',
         width: 200,
         clear: 'right',
-        borderLeftStyle:'solid',
-        borderLeftWidth:4,
+        borderLeftStyle: 'solid',
+        borderLeftWidth: 4,
         height: 40,
         lineHeight: '37px',
         textIndent: 16,
@@ -32,8 +32,8 @@ const styles = {
     buttonsContainer: {
         display: 'inline-block',
         float: 'right',
-        right:-18,
-        position:'relative'
+        right: -18,
+        position: 'relative'
     },
     button: {
         border: '2px solid darkgrey',
@@ -44,7 +44,11 @@ const styles = {
         cursor: 'pointer',
         borderRadius: 20,
         marginRight: 7,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        '&:hover': {
+            border: '2px solid white',
+            color: 'white'
+        }
     },
     creatorButton: {
         border: 'none',

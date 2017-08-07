@@ -7,7 +7,6 @@ const styles = {
     container: {
         height: '100%',
         textAlign: 'center',
-        paddingTop: 25,
         lineHeight: '30px',
     },
     partitionedContainer: {
@@ -17,11 +16,11 @@ const styles = {
         textAlign: 'center',
         verticalAlign: 'top',
         lineHeight: '30px',
-        paddingTop: 25
     },
     appName: {
         fontSize: 11,
         margin: 0,
+        lineHeight: '20px'
 
     },
     appShortName: {
@@ -31,11 +30,30 @@ const styles = {
     },
     created: {
         fontSize: 8,
-        color:'black'
+        color: 'black'
     },
     createdDate: {
         marginLeft: 3
+    },
+    deleteButton: {
+        background: 'none',
+        border: '1px solid white',
+        padding: '6px 10px',
+        marginTop: 7,
+        color: 'white',
+        fontWeight: 'bold',
+        marginRight: 7,
+        borderRadius: 14,
+        cursor: 'pointer',
+        opacity: 0.4,
+        '&:hover': {
+            opacity: 1
+        }
+    },
+    deleteButtonContainer: {
+        textAlign: 'right'
     }
+
 };
 
 const AppInstanceContent = ({app, classes}) => (
@@ -48,6 +66,12 @@ const AppInstanceContent = ({app, classes}) => (
     </div>
 );
 
+const AppInstanceDelete = ({onClick, app, classes}) => (
+    <div className={classes.deleteButtonContainer}>
+        <button onClick={onClick} className={classes.deleteButton}>-
+        </button>
+    </div>
+);
 
 export class AppInstContainer extends React.Component {
 
@@ -55,16 +79,27 @@ export class AppInstContainer extends React.Component {
         super(props);
     }
 
+    deleteInstance(instance) {
+        this.props.dispatch({
+            type: 'DESTROY_APP_INST',
+            app: instance.application,
+            instance
+        });
+
+    }
+
     render(props) {
         const classes = this.props.classes;
         return this.props.partitioned ? (
             <div style={{backgroundColor: this.props.app.application.color}}
                  className={classes.partitionedContainer}>
+                <AppInstanceDelete onClick={() => this.deleteInstance(this.props.app)} {...this.props}  />
                 <AppInstanceContent {...this.props} />
             </div>
         ) : (
             <div style={{backgroundColor: this.props.app.application.color}
             } className={classes.container}>
+                <AppInstanceDelete onClick={() => this.deleteInstance(this.props.app)} {...this.props} />
                 <AppInstanceContent {...this.props}/>
             </div>
         )
