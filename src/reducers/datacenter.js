@@ -38,15 +38,30 @@ export default function datacenter(state = {
 
         case "DESTROY_SERVER" :
             if (!Object.keys(new_state.servers).length) return new_state;
+
+            //Find last server created
             let sorted_servers = sortBy(new_state.servers, 'created').reverse();
+
+            //Extract applications from server to be killed
             let purgedAppInstances = new_state.servers[sorted_servers[0].id].apps;
+
+            //Kill server
             delete new_state.servers[sorted_servers[0].id];
+
             if (purgedAppInstances.length) {
                 purgedAppInstances.forEach(instance => {
                         let nextServer = getNextAvailableServer();
+
                         if (nextServer) {
+                            //Point extraced application instances to a new server
+                            instance.server = nextServer;
                             new_state.servers[nextServer].apps.push(instance);
+                            new_state.apps[instance.application.id].forEach(appInstance => {
+                                if (appInstance.id === instance.id)
+                                    appInstance.server = nextServer;
+                            });
                         } else {
+                            //No server to point to, therefore kill application instances
                             findIndexAndRemove(
                                 new_state.apps[instance.application.id],
                                 (appInstance) => appInstance.id === instance.id
@@ -61,7 +76,6 @@ export default function datacenter(state = {
             if (!Object.keys(new_state.servers).length) return new_state;
             let server = getNextAvailableServer();
             if (!server) return new_state;
-
             unique_id = generateID();
             let app = {
                 'created': unique_id,
@@ -69,6 +83,7 @@ export default function datacenter(state = {
                 'application': action.app,
                 server
             };
+            //Add new application instance
             if (!new_state.apps[action.app.id]) new_state.apps[action.app.id] = [];
             new_state.apps[action.app.id].push(app);
             new_state.servers[server].apps.push(app);
@@ -77,7 +92,6 @@ export default function datacenter(state = {
         case 'DESTROY_APP_INST' :
             if (!new_state.apps[action.app.id] || !new_state.apps[action.app.id].length) return new_state;
             let lastInstance = action.instance || new_state.apps[action.app.id].pop();
-
             findIndexAndRemove(
                 new_state.servers[lastInstance.server].apps,
                 (app) => app.id === lastInstance.id
