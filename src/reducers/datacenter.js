@@ -7,7 +7,7 @@ export default function datacenter(state = {
     const generateID = () => new Date().getTime(),
         findIndexAndRemove = (arr, callback) => {
             arr.splice(arr.findIndex(callback), 1)
-        }
+        };
     let unique_id, sorted_servers;
 
     switch (action.type) {
@@ -37,11 +37,9 @@ export default function datacenter(state = {
             return new_state;
 
         case "ADD_APP_INST" :
-
             if (!Object.keys(new_state.servers).length) return new_state;
             sorted_servers = sortBy(new_state.servers, 'created').reverse();
             let availableServer = false;
-
             sorted_servers.map((server) => {
                 if (server.apps.length < 2) {
                     availableServer = server.id;

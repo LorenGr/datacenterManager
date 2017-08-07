@@ -1,8 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import injectSheet from 'react-jss'
 
 //Application Components
 import ServerContainer from './servercontainer';
+
+const styles = {
+  canvas : {
+      backgroundColor : 'black'
+  }
+};
 
 export class ServerCanvas extends React.Component {
 
@@ -11,13 +18,14 @@ export class ServerCanvas extends React.Component {
         for (let i = 0; i < 4; i++) {
             setTimeout(() => {
                 this.props.dispatch({type: 'ADD_SERVER'});
-            }, i * 500);
+            }, i * 150);
         }
     }
 
     render() {
+        const classes = this.props.classes;
         return (
-            <div>
+            <div className={classes.canvas}>
                 {Object.keys(this.props.servers).map(key => {
                     let server = this.props.servers[key];
                     return (<ServerContainer key={server.id} server={server}/> )
@@ -34,4 +42,6 @@ function mapStateToProps(state) {
     });
 }
 
-export default connect(mapStateToProps)(ServerCanvas);
+export default connect(mapStateToProps)(
+    injectSheet(styles)(ServerCanvas)
+);
