@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import injectSheet from 'react-jss';
+import {CSSTransitionGroup} from 'react-transition-group';
 
 //Application Components
 import AppInstContainer from './appinstcontainer';
@@ -18,6 +19,17 @@ const styles = {
     },
     emptyContainer: {
         opacity: 0.3
+    },
+
+
+    aniEnter: {
+        opacity: 0,
+        scale: 0.5,
+    },
+    aniEnterActive: {
+        opacity: 1,
+        scale: 1,
+        transition: 'all 1500ms ease-in'
     }
 }
 
@@ -34,24 +46,33 @@ export class ServerContainer extends React.Component {
         let apps = this.props.server.apps;
 
         if (!apps.length) {
-            app_instances = <div className={
+            app_instances = <div key={0} className={
                 [classes.container, classes.emptyContainer].join(' ')}></div>;
         }
 
         if (apps.length === 1) {
-            app_instances = <div className={classes.container}>
+            app_instances = <div key={1} className={classes.container}>
                 <AppInstContainer partitioned={false} app={apps[0]}/>
             </div>;
         }
 
         if (apps.length === 2) {
-            app_instances = <div className={classes.container}>
+            app_instances = <div key={2} className={classes.container}>
                 <AppInstContainer partitioned={true} app={apps[0]}/>
                 <AppInstContainer partitioned={true} app={apps[1]}/>
             </div>;
         }
 
-        return (app_instances);
+        return (
+            <CSSTransitionGroup
+                transitionName="slots"
+                transitionLeave={false}
+                transitionAppear={false}
+                transitionEnter={true}
+                transitionEnterTimeout={200}>
+
+                {app_instances}
+            </CSSTransitionGroup>);
 
     }
 }
