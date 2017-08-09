@@ -39845,7 +39845,18 @@ function datacenter() {
 
         case 'DESTROY_APP_INST':
             if (!new_state.apps[action.app.id] || !new_state.apps[action.app.id].length) return new_state;
+
+            //If an instance not specified then delete last one created
             var lastInstance = action.instance || new_state.apps[action.app.id].pop();
+
+            //If an instance specified then delete it
+            if (action.instance) {
+                findIndexAndRemove(new_state.apps[action.app.id], function (appInstance) {
+                    return appInstance.id === lastInstance.id;
+                });
+            }
+
+            //Delete application reference on server instance
             findIndexAndRemove(new_state.servers[lastInstance.server].apps, function (app) {
                 return app.id === lastInstance.id;
             });
