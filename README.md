@@ -11,7 +11,7 @@ This project is a test application that simulates the allocation and partitionin
 ##### Webpack the project
 `npm build`
 
-##### Start webpack-server on localhost port 3000
+##### Start webpack-server on localhost port 3001
 `npm start`
 
 # Stack
