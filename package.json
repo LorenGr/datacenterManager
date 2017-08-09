@@ -4,6 +4,7 @@
   "description": "Coding Challenge",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.15.4",
     "lodash.sortby": "^4.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -47,7 +48,8 @@
   },
   "scripts": {
     "test": "mocha  --require debug-fd-deprecated --compilers js:babel-register --recursive --require babel-polyfill --require ignore-styles",
-    "start": "webpack-dev-server --inline --hot --host localhost --port 3000",
+    "start": "node index.js",
+    "start-dev": "webpack-dev-server --inline --hot --host localhost --port 3000",
     "build": "webpack --colors --progress --config webpack.config.js"
   },
   "repository": {
