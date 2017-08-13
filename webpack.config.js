@@ -4,15 +4,33 @@ var webpack = require("webpack"),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: [
-        'babel-polyfill',
-        'react-hot-loader/patch',
-        __dirname + '/src' + '/index.js'
+    entry: {
+        "app": [
+            'babel-polyfill',
+            'react-hot-loader/patch',
+        ],
+        "vendor": [
+            "lodash.sortby",
+            "react",
+            "react-dom",
+            "react-jss",
+            "react-redux",
+            "react-transition-group",
+            "redux",
+            "timeago-react",
+        ],
+        "index": __dirname + '/src' + '/index.js',
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+        }),
     ],
     output: {
         path: __dirname + '/public/',
         publicPath: '/',
-        filename: 'bundle.js'
+        filename: "[name].bundle.js",
+        chunkFilename: "[id].bundle.js"
     },
     module: {
         rules: [
