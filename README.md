@@ -2,14 +2,14 @@
 
 This project is a test application that simulates the allocation and partitioning of various servers and the various application instances distributed on the clusters.
 
+# Demo
+https://datacentermanager.herokuapp.com
+
 # Starting the project
 
 
 ##### install dependencies
 `npm install`
-
-##### Demo
-https://datacentermanager.herokuapp.com
 
 ##### Webpack the project
 `npm build`
