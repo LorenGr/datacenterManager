@@ -8,6 +8,9 @@ This project is a test application that simulates the allocation and partitionin
 ##### install dependencies
 `npm install`
 
+##### Demo
+https://datacentermanager.herokuapp.com
+
 ##### Webpack the project
 `npm build`
 
